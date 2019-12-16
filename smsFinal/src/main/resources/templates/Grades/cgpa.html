@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>cGPA summary</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+
+</head>
+<body>
+	<nav th:insert="~{/Navbars/facultyNavbar :: navbarfragment}"></nav>
+	<h1>cGPA Summary of all students</h1>
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>Student</th>
+				<th>cGpa</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="viewbag: ${viewbags}">
+				<td th:text=${viewbag.studentName}></td>
+				<td th:text=${viewbag.grade}></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student List</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+</head>
+<body>
+	<nav th:insert="~{/Navbars/adminnavbar :: navbarfragment}"></nav>
+	<h1 class="slightlyLeftMargin">Student List</h1>
+	<a href="AddStudent.html" th:href="@{/adminpage/student/add}"
+		class="btn btn-primary slightlyLeftMargin">Add Student</a>
+	
+	<p th:text="${errorMessage}" style="color:red;"></p>
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Degree</th>
+				<th>Gender</th>
+				<th>Mobile</th>
+				<th>Semester</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="student : ${pageResult.content}">
+				<td th:text=${student.studentId}>Id</td>
+				<td th:text=${student.studentName}>Name</td>
+				<td th:text=${student.degree}>Degree</td>
+				<td th:text=${student.gender}>Gender</td>
+				<td th:text=${student.mobile}>Mobile</td>
+				<td th:text=${student.semester}>Semester</td>
+				<td><a href="EditStudent.html"
+					th:href="@{/adminpage/student/edit/}+${student.studentId}">Edit</a></td>
+				<td><a href="DeleteStudent.html"
+					th:href="@{/adminpage/student/delete/}+${student.studentId}">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<nav aria-label="Page navigation" class="slightlyLeftMargin">
+		<ul class="pagination">
+			<li class="page-item"  th:each="pageNumber : ${pageNumbers}">
+				<a class="page-link"
+				th:href="@{/adminpage/student/page(size=${pageResult.size}, page=${pageNumber})}"
+				th:text="${pageNumber}"></a></li>
+		</ul>
+	</nav>
+
+
+</body>
+</html>

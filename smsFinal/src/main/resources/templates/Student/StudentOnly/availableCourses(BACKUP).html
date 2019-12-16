@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>availableCourses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/bootstrap.css"/>
+
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.row {
+	margin: 0 -5px;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+@media screen and (max-width: 600px) {
+	.column {
+		width: 100%;
+		display: block;
+		margin-bottom: 20px;
+	}
+}
+
+.card {
+	margin-left:50px;
+}
+
+.card button {
+	border: none;
+	outline: 0;
+	padding: 12px;
+	color: white;
+	background-color: #000;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+}
+
+.card button:hover {
+	opacity: 0.7;
+}
+</style>
+
+</head>
+<body>
+<nav th:insert="~{/Navbars/studentNavbar :: navbarfragment}"></nav>
+
+	<h2>Available Courses</h2>
+	<script>
+		function myFunction() {
+			document.getElementById("${C.courseUnit}").innerHTML = "Enrolled";
+		}
+	</script>
+
+	<div class="row">
+		<div th:each="C:${course}">
+			<div class="column">
+
+				<div class="card">
+					<h2 th:text="${C.courseName}"></h2>
+					<p><b>Course Code</b>
+					<span th:text="${C.courseCode}"></span></p>
+					<p><b>Course Unit</b>
+					<span th:text="${C.courseUnit}"></span></p>
+					<h3 id="${C.courseUnit}">				
+					<a th:href= "@{/studentpage/mail} + '?courseCode=' + ${C.courseCode}"> Enroll</a>
+
+					
+					</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+   
+
+</body>
+</html>

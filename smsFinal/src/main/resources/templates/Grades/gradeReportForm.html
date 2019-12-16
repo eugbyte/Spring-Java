@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Grade Report</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/centerForm.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+
+</head>
+<body>
+<nav th:insert="~{/Navbars/facultyNavbar :: navbarfragment}"></nav>
+<h1 class="slightlyLeftMargin">Grade Report</h1>
+
+
+<form method="post" th:action="@{/facultypage/retrievereport}" class="centerForm">
+
+	<div class="form-group">
+	<label>Grade Range</label>
+		<select name="selectedGradeRange" class="form-control">
+			<option th:each="grade : ${selectedGradeRange}"
+					th:value="${grade}"
+					th:text="${grade}"						
+			></option>
+		</select>
+	</div>
+	
+	<p><b>Select Courses</b></p>
+	<div class="form-check form-check-inline">
+		<ul>
+			<li th:each="course : ${checkedCourses}">
+				<input type="checkbox" th:value="${course.courseCode}" name="checkedCourses" class="form-check-input" />
+				<label for="courseCode" th:text="${course.courseName}"></label>
+			</li>
+		</ul>	
+	</div>
+
+<div class="form-group">
+<input type="submit" value="Submit" class="btn btn-primary"/>
+</div>
+</form>
+
+</body>
+</html>

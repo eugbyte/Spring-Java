@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Department Form</title>
+
+<link rel="stylesheet" type="text/css" href="/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="/centerForm.css"/>
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+
+</head>
+<body>
+
+<nav th:insert="~{/Navbars/adminnavbar :: navbarfragment}"></nav>
+
+<h1 class="slightlyLeftMargin">Department Form</h1>
+	<form action="post" th:object="${new_department}" th:action="@{/adminpage/department/save}" class="centerForm"> 
+	
+	<div th:style="${'display : none'}">	
+   		ID: <input type="text" th:field="*{departmentId}" required/>
+   </div>
+   
+	<div class="form-group">
+	<label for"departmentName">Department Name</label>
+	<input type="text"th:field="*{departmentName}" class="form-control" required/>
+	<p th:if="${#fields.hasErrors('departmentName')}"th:errors="*{departmentName}"></p>
+	</div>
+	
+	<div class="form-group">
+	<button type="submit" class="btn btn-primary">UPDATE</button>
+	</div>
+	</form>
+	
+</body>
+</html>

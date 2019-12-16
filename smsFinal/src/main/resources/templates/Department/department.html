@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<title>Department</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+
+</head>
+<body>
+
+	<nav th:insert="~{/Navbars/adminnavbar :: navbarfragment}"></nav>
+	<h1 class="slightlyLeftMargin">Department</h1>
+	<a href="AddDepartment.html" th:href="@{/adminpage/department/add}" class="btn btn-primary slightlyLeftMargin">Add
+		Department</a>
+		
+	<p th:text=${errorMessage} style="color: red" class="slightlyLeftMargin"></p>
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="department:${pageResult.content}">
+				<td th:text=${department.departmentId}>Id</td>
+				<td th:text=${department.departmentName}>Name</td>
+				<td><a href="EditDepartment.html"
+					th:href="@{/adminpage/department/edit/}+${department.departmentId}">Edit</a></td>
+				<td><a href="DeleteDepartment.html"
+					th:href="@{/adminpage/department/delete/}+${department.departmentId}">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<nav aria-label="Page navigation" class="slightlyLeftMargin">
+		<ul class="pagination">
+			<li class="page-item"  th:each="pageNumber : ${pageNumbers}">
+				<a class="page-link"
+				th:href="@{/adminpage/department/page(size=${pageResult.size}, page=${pageNumber})}"
+				th:text="${pageNumber}"></a></li>
+		</ul>
+	</nav>
+</body>
+</html>

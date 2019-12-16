@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+.jumbotron {
+	margin: 100px 50px;
+}
+</style>
+
+</head>
+<body>
+<nav th:insert="~{/Navbars/homenavbar :: navbarfragment}"></nav>
+
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to the Student Management System</h1>
+  
+  <hr class="my-4">
+  <p style="text-align: center">Login to proceed</p>
+
+</div>
+</body>
+
+<script type="text/javascript" src="/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+</html>

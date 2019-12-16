@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Grades</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+
+</head>
+<body>
+	<nav th:insert="~{/Navbars/studentNavbar :: navbarfragment}"></nav>
+
+	<h1 class="slightlyLeftMargin">Grade Summary</h1>
+	<header>
+		<!-- <h2 th:text="${student.studentName}" class="slightlyLeftMargin">Name</h2> -->
+		<h4 class="slightlyLeftMargin">Student name: 
+			<b><span th:text="${student.studentName}" ></span></b>
+		</h4>
+	</header>
+
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>Course Id</th>
+				<th>Course Name</th>
+				<th>Units</th>
+				<th>Grade</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="grade:${studentgrade}">
+				<td th:text="${grade.course.courseCode}"></td>
+				<td th:text="${grade.course.courseName}"></td>
+				<td th:text="${grade.course.courseUnit}"></td>
+				<td th:text="${grade.grade}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<p class="slightlyLeftMargin">
+		<b>GPA:</b> <span th:text="${gpa}"></span>
+	</p>
+
+</body>
+</html>

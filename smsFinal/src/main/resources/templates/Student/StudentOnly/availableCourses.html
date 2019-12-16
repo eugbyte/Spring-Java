@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Available Courses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+
+</head>
+<body>
+	<nav th:insert="~{/Navbars/studentNavbar :: navbarfragment}"></nav>
+
+	<h2 class="slightlyLeftMargin">Available Courses</h2>
+
+	<div  class="row">
+
+		<div class="col-sm-4" th:each="C:${course}">
+			<div class="card slightlyLeftMargin" style="width: 18rem; margin-bottom: 10px;">
+				<div class="card-body">
+					<h5 th:text="${C.courseName}"></h5>
+					<p>
+						<b>Course Code:</b> <span th:text="${C.courseCode}"></span>
+					</p>
+					<p>
+						<b>Course Unit:</b> <span th:text="${C.courseUnit}"></span>
+					</p>
+					<a
+						th:href="@{/studentpage/mail} + '?courseCode=' + ${C.courseCode}"
+						class="btn btn-primary"> Enroll</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

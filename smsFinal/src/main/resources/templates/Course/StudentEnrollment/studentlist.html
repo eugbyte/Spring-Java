@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student List</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css"/>
+<style>
+
+</style>
+</head>
+<body>
+<nav th:insert="~{/Navbars/adminNavbar :: navbarfragment}"></nav>
+<h1 class="slightlyLeftMargin">Student List</h1>
+<table class="table">
+	<thead class="thead-light">
+		<tr>
+			<th>Student Id</th>
+			<th>Name</th>
+			<th>Semester</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="student:${students}">
+			<td th:text=${student.studentId}>Code</td>
+			<td th:text=${student.studentName}>Name</td>
+			<td th:text=${student.semester}>Unit</td>
+		</tr>
+	</tbody>
+</table>
+
+<a th:href="@{/adminpage/courses/download/} + '?courseCode=' + ${courseCode}" class="btn btn-primary slightlyLeftMargin">Download CSV</a>
+
+</body>
+</html>

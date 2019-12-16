@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Application status</title>
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+</head>
+<body>
+<nav th:insert="~{/Navbars/studentNavbar :: navbarfragment}"></nav>
+<h1 class="slightlyLeftMargin">Application status</h1>
+<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>Course Name</th>
+				<th>Course Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="enrollment:${enrollments}">
+				<td th:text="${enrollment.course.courseName}"></td>
+				<td th:text="${enrollment.status}"></td>
+
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

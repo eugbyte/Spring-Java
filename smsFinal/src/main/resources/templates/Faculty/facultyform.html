@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Faculty Form</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/centerForm.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+</head>
+<body>
+
+	<nav th:insert="~{/Navbars/adminnavbar :: navbarfragment}"></nav>
+	<h1>Faculty Form</h1>
+	<form action="post" th:object="${new_faculty}"
+		th:action="@{/adminpage/faculty/save}" class="centerForm">
+
+		<div th:style="${'display : none'}">
+			<input type="text" th:field="*{facultyId}" required/>
+		</div>
+
+		<div class="form-group">
+			<label for="facultyName">Faculty Name</label> <input type="text"
+				th:field="*{facultyName}" class="form-control" required/>
+			<p th:if="${#fields.hasErrors('facultyName')}"
+				th:errors="*{facultyName}"></p>
+		</div>
+
+		<div class="form-group">
+			<label for="department">Department assigned to</label> <select
+				th:field="*{department}" class="form-control">
+				<option th:each="department : ${departments_}"
+					th:value="${department.departmentId}"
+					th:text="${department.departmentName}"></option>
+			</select>
+		</div>
+
+		<fieldset>
+			<button type="submit" class="btn btn-primary">UPDATE</button>
+		</fieldset>
+	</form>
+
+</body>
+</html>

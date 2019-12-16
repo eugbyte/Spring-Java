@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Review Request</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+</head>
+<body>
+<nav th:insert="~{/Navbars/adminnavbar :: navbarfragment}"></nav>
+
+	<h1 class="slightLeftMargin">Review Request</h1>
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>Student Name</th>
+				<th>Course id</th>
+				<th>Course Name</th>
+				<th>Status</th>
+				<th>Approve</th>
+				<th>Reject</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="enrollment : ${enrollments}">
+				<td th:text=${enrollment.student.studentName}></td>
+				<td th:text=${enrollment.course.courseCode}></td>
+				<td th:text=${enrollment.course.courseName}></td>
+				<td th:text=${enrollment.status}></td>
+				<td><a
+					th:href="@{/adminpage/enrollment/process/} + ${enrollment.id} + '?status=APPROVED' ">
+						Approve</a></td>
+				<td><a
+					th:href="@{/adminpage/enrollment/process/} + ${enrollment.id} + '?status=REJECT' ">
+						Reject</a></td>
+		</tbody>
+	</table>
+
+</body>
+</html>

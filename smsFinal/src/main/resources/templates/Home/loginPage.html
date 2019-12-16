@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="/centerForm.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+<link rel="stylesheet" type="text/css" href="/fieldError.css" />
+
+<style>
+.loginForm {
+	margin-left:30%;
+	margin-right:30%;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav th:insert="~{/Navbars/homenavbar :: navbarfragment}"></nav>
+
+<form method="post" th:action="@{/login}" th:object="${user}" class="loginForm">
+	<h2>Login</h2>
+	
+  <div th:style="${'display : none'}">
+   		ID: <input type="text" th:field="*{userId}" />
+   </div>    
+   
+   <div class="form-group">
+   <label for="username">UserName</label>
+   	<input type="text" th:field="*{username}" class="form-control"/>
+   		<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:errorclass="fieldError" ></p>
+   </div>   
+   <div class="form-group">
+   <label for="password">Password</label>
+   		<input th:field="*{password}" type="password" class="form-control"/>
+   		<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="fieldError"></p>
+   </div>
+   <div class="form-group">
+		<button type="submit" class="btn btn-primary">Login</button>
+	</div>
+	<p th:if="${hasError == true}" class="fieldError">Login Error</p>
+</form>
+
+
+
+</body>
+
+<script type="text/javascript" src="/bootstrap.js"></script>
+</html>

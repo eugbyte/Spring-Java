@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<title>Course Form</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/centerForm.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+</head>
+<body>
+
+	<nav th:insert="~{/Navbars/adminnavbar :: navbarfragment}"></nav>
+
+	<h1 class="slightlyLeftMargin">Course Form</h1>
+	<form action="post" th:object="${new_course}"
+		th:action="@{/adminpage/courses/save}" class="centerForm">
+		<div class="form-group" th:style="${'display : none'}">
+			ID: <input type="text" th:field="*{courseCode}" required/>
+		</div>
+
+		<div class="form-group">
+			<label for="courseName">Name</label> <input type="text"
+				th:field="*{courseName}" class="form-control" required/>
+			<p th:if="${#fields.hasErrors('courseName')}"
+				th:errors="*{courseName}"></p>
+		</div>
+
+		<div class="form-group">
+			<label for="courseUnit">Unit</label> <input type="text"
+				th:field="*{courseUnit}" class="form-control" required/>
+			<p th:if="${#fields.hasErrors('courseUnit')}"
+				th:errors="*{courseUnit}"></p>
+		</div>
+
+		<div class="form-group">
+			<label for="department">Department assigned to</label> <select
+				th:field="*{department}" class="form-control">
+				<option th:each="department : ${departments_}"
+					th:value="${department.departmentId}"
+					th:text="${department.departmentName}"></option>
+			</select>
+		</div>
+
+		<fieldset>
+			<button type="submit" class="btn btn-primary">UPDATE</button>
+		</fieldset>
+	</form>
+
+</body>
+</html>

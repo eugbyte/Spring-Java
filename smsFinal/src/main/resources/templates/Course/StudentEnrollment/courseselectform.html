@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css"/>
+
+</head>
+<body>
+<nav th:insert="~{/Navbars/adminNavbar :: navbarfragment}"></nav>
+
+<h1>View student enrollment for a course</h1>
+
+
+<form method="post" th:action="@{/adminpage/courses/retrieveEnrollment}">
+	<div class="form-group">
+	<label for="selectedCourseId">Course</label>
+		<select name="selectedCourseId">
+			<option th:each="course : ${courses}"
+					th:value="${course.courseCode}"
+					th:text="${course.courseName}"						
+			></option>
+		</select>
+	</div>
+
+<input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+
+</body>
+</html>

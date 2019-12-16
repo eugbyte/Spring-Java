@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+
+<title>View Courses</title>
+</head>
+<body>
+
+	<nav th:insert="~{/Navbars/adminnavbar :: navbarfragment}"></nav>
+
+	<h1 class="slightlyLeftMargin">List of courses</h1>
+	<a href="AddCourse.html" th:href="@{/adminpage/courses/add}"
+		class="btn btn-primary slightlyLeftMargin">Add course</a>
+	<p th:text=${errorMessage} style="color: red"
+		class="slightlyLeftMargin"></p>
+	<table class="table">
+		<thead class="thead-light">
+			<tr class="table">
+				<th>Code</th>
+				<th>Name</th>
+				<th>View enrolled students</th>
+				<th>Unit</th>
+				<th>Department</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="course:${pageResult.content}">
+				<td th:text=${course.courseCode}>Code</td>
+				<td th:text=${course.courseName}>Name</td>
+				<td><a
+					th:href="@{/adminpage/courses/retrieveEnrollment/} + '?selectedCourseId=' + ${course.courseCode}">View
+						students</a></td>
+				<td th:text=${course.courseUnit}>Unit</td>
+				<td th:text=${course.department.departmentName}>Department</td>
+				<td><a href="EditCourse.html"
+					th:href="@{/adminpage/courses/edit/}+${course.courseCode}">Edit</a></td>
+				<td><a href="DeleteCourse.html"
+					th:href="@{/adminpage/courses/delete/}+${course.courseCode}">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<nav aria-label="Page navigation" class="slightlyLeftMargin">
+		<ul class="pagination">
+			<li class="page-item"  th:each="pageNumber : ${pageNumbers}">
+				<a class="page-link"
+				th:href="@{/adminpage/courses/page(size=${pageResult.size}, page=${pageNumber})}"
+				th:text="${pageNumber}"></a></li>
+		</ul>
+	</nav>
+</body>
+</html>

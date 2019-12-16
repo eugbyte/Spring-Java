@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Courses</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+</head>
+
+<body>
+	<nav th:insert="~{/Navbars/facultyNavbar :: navbarfragment}"></nav>
+	<h1 class="slightlyLeftMargin">Course overview</h1>
+
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th>Course name</th>
+				<th>View grade summary</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="course:${courses}">
+				<td th:text=${course.courseName}></td>
+				<td><a
+					th:href="@{/facultypage/grades(id=${course.courseCode}) }">View</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

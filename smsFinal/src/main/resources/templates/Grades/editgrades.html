@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit grades</title>
+<link rel="stylesheet" type="text/css" href="/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/centerForm.css" />
+<link rel="stylesheet" type="text/css" href="/slightlyLeftMargin.css" />
+
+<style>
+.fieldError {
+	color: red;
+}
+</style>
+
+</head>
+<body>
+<nav th:insert="~{/Navbars/facultyNavbar :: navbarfragment}"></nav>
+<h2 th:text="${'Student Name: '} + ${grade.student.studentName}" class="slightlyLeftMargin"></h2>
+
+<form method="post" th:action=@{/facultypage/grades/save} th:object="${grade}" class="centerForm">
+
+  <div th:style="${'display : none'}">	
+   		ID: <input type="text" th:field="*{id}" />
+   </div>
+
+	<div class="form-group">
+   		Grades: <input type="text" th:field="*{grade}" class="form-control" />
+   		<p th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}">Grade cannot be a string</p>
+   		<p th:if="${hasError == true}" class="fieldError">Grade cannot be a string</p>
+
+   </div>   
+  
+	<fieldset th:style="${'display : none'}">	
+   		Semester: <input type="text" th:field="*{semester}" />
+   </fieldset>
+	
+	<fieldset th:style="${'display : none'}">	
+   		Course: <input type="text" th:field="*{course}" />
+   </fieldset>
+   
+   <fieldset th:style="${'display : none'}">	
+   		Student: <input type="text" th:field="*{student}" />
+   </fieldset>
+   
+   <div class="form-group">
+		<button type="submit" class="btn btn-primary">Save</button>
+	</div>
+
+</form>
+
+</body>
+</html>
