@@ -4,6 +4,7 @@ Group Project - fellow contributors: Khine, Peter, Saif, Lara, Zhao Min, Samuel
 
 # Instructions:
 1.Unzip the file. In the file, there are one folder (smsFinal) and one database file(team5.sql)
+
 2. Import database into MySQL: 
 - Server/ Data Import/ Import from Disk
 - Import from Self-Contained File/ Browse to sms_3.sql
