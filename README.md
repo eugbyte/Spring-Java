@@ -31,11 +31,13 @@ mailSender.send("XXXXXX", "Enrolment Request submitted", "Please check system to
 
 Login Credentials: 
 For Admin: 
-- Username:admin 
+- Username:admin
 - Password:admin
+
 For Student: 
 - Username:student 
 - Password:student
+
 For Faculty Member: 
 - Username:faculty 
 - Password:faculty
